@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Match Analysis</h1>
+
+<div class="card">
+    <h2 style="text-align: center; color: var(--primary-color);">Overall Match Score</h2>
+    <div style="text-align: center; font-size: 3rem; font-weight: bold; margin-bottom: 1rem;">
+        {{ analysis.overall_score }} / 100
+    </div>
+    <div class="progress-bar-container">
+        <div class="progress-bar" style="width: {{ analysis.overall_score }}%;"></div>
+    </div>
+    <p style="text-align: center;">Your resume matches {{ matched_skills|length }} of {{ job_reqs|length }} identified technical requirements.</p>
+</div>
+
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
+    <div class="card">
+        <h3>Score Breakdown</h3>
+        <p><strong>Skill Match (50% weight):</strong> {{ analysis.skill_score }}%</p>
+        <div class="progress-bar-container"><div class="progress-bar" style="width: {{ analysis.skill_score }}%;"></div></div>
+        
+        <p><strong>Text Similarity (25% weight):</strong> {{ analysis.similarity_score }}%</p>
+        <div class="progress-bar-container"><div class="progress-bar" style="width: {{ analysis.similarity_score }}%;"></div></div>
+        
+        <p><strong>Experience Relevance (15% weight):</strong> {{ analysis.experience_score }}%</p>
+        <div class="progress-bar-container"><div class="progress-bar" style="width: {{ analysis.experience_score }}%;"></div></div>
+        
+        <p><strong>Education Relevance (10% weight):</strong> {{ analysis.education_score }}%</p>
+        <div class="progress-bar-container"><div class="progress-bar" style="width: {{ analysis.education_score }}%;"></div></div>
+    </div>
+    
+    <div class="card">
+        <h3>Recommendations</h3>
+        {% if missing_skills %}
+            <p>Consider adding demonstrated experience with the following skills if applicable:</p>
+            <ul style="margin-left: 1.5rem; margin-top: 1rem;">
+                {% for skill in missing_skills %}
+                    <li>{{ skill }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>Great job! You have all the identified technical requirements for this role.</p>
+        {% endif %}
+    </div>
+</div>
+
+<div class="card">
+    <h3>Matched Skills</h3>
+    {% if matched_skills %}
+        <div>
+            {% for skill in matched_skills %}
+                <span class="badge">{{ skill }}</span>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No matching skills found.</p>
+    {% endif %}
+</div>
+
+<div class="card">
+    <h3>Missing Skills</h3>
+    {% if missing_skills %}
+        <div>
+            {% for skill in missing_skills %}
+                <span class="badge missing">{{ skill }}</span>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No missing requirements identified.</p>
+    {% endif %}
+</div>
+
+<div class="card">
+    <h3>Detected Resume Skills</h3>
+    <div>
+        {% for skill in resume_skills %}
+            <span class="badge" style="background-color: #f3f4f6; color: #4b5563;">{{ skill }}</span>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="card">
+    <h3>Detected Job Requirements</h3>
+    <div>
+        {% for req in job_reqs %}
+            <span class="badge" style="background-color: #f3f4f6; color: #4b5563;">{{ req }}</span>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

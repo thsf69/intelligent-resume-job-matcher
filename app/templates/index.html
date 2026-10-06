@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="card" style="text-align: center; padding: 4rem 2rem;">
+    <h1>Intelligent Resume & Job Matching Platform</h1>
+    <p style="font-size: 1.25rem; color: #4b5563; margin-bottom: 2rem;">Analyze your resume against job descriptions using deterministic NLP.</p>
+    <div>
+        <a href="{{ url_for('auth.register') }}" class="btn" style="margin-right: 1rem;">Get Started</a>
+        <a href="{{ url_for('auth.login') }}" class="btn" style="background-color: var(--card-bg); color: var(--text-color); border: 1px solid var(--border-color);">Login</a>
+    </div>
+</div>
+{% endblock %}

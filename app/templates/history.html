@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Analysis History</h1>
+
+<div class="card">
+    {% if analyses %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Resume</th>
+                    <th>Job Title</th>
+                    <th>Score</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for analysis in analyses %}
+                <tr>
+                    <td>{{ analysis.created_at.strftime('%Y-%m-%d %H:%M') }}</td>
+                    <td>{{ analysis.resume.name }}</td>
+                    <td>{{ analysis.job.title }}</td>
+                    <td><strong>{{ analysis.overall_score }}%</strong></td>
+                    <td><a href="{{ url_for('analysis.view_analysis', id=analysis.id) }}">View Results</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>You haven't run any analyses yet. <a href="{{ url_for('analysis.new_analysis') }}">Run one now.</a></p>
+    {% endif %}
+</div>
+{% endblock %}

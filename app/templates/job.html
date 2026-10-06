@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="flex-between">
+    <h1>Saved Job Descriptions</h1>
+</div>
+
+<div class="card">
+    <h2>Add New Job</h2>
+    <form method="POST" action="{{ url_for('jobs.add_job') }}">
+        <div class="form-group">
+            <label>Job Title</label>
+            <input type="text" name="title" class="form-control" placeholder="e.g. Senior Python Developer" required>
+        </div>
+        <div class="form-group">
+            <label>Company (Optional)</label>
+            <input type="text" name="company" class="form-control" placeholder="e.g. Tech Corp">
+        </div>
+        <div class="form-group">
+            <label>Job Description</label>
+            <textarea name="description" class="form-control" placeholder="Paste the job description here..." required></textarea>
+        </div>
+        <button type="submit" class="btn">Add Job</button>
+    </form>
+</div>
+
+<div class="card">
+    <h2>Saved Jobs</h2>
+    {% if jobs %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Company</th>
+                    <th>Date Added</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for job in jobs %}
+                <tr>
+                    <td>{{ job.title }}</td>
+                    <td>{{ job.company }}</td>
+                    <td>{{ job.created_at.strftime('%Y-%m-%d') }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No jobs saved yet.</p>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,21 @@
+Senior Python Developer
+InnovateTech Solutions
+
+About the Role
+We are looking for a Senior Python Developer to join our growing engineering team. You will be responsible for building robust backend services and deploying them to the cloud.
+
+Responsibilities
+- Design and develop RESTful APIs using Python and Flask or Django.
+- Manage relational databases like PostgreSQL or MySQL.
+- Containerize applications using Docker and orchestrate with Kubernetes.
+- Implement CI/CD pipelines using Git and GitLab.
+- Work with cloud platforms, specifically AWS.
+
+Requirements
+- 5+ years of experience in software development.
+- Strong proficiency in Python.
+- Experience with web frameworks like Flask.
+- Solid understanding of SQL and databases (PostgreSQL preferred).
+- Experience with Docker, AWS, and Git.
+- Familiarity with CI/CD practices.
+- Bachelor degree in Computer Science or related field.
